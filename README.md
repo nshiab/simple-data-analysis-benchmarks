@@ -2,7 +2,7 @@
 
 To test the performance of **simple-data-analysis@2.0.1**, we calculated the average temperature per decade and city with the daily temperatures from the [Adjusted and Homogenized Canadian Climate Data](https://api.weather.gc.ca/collections/ahccd-annual).
 
-We ran the same calculations with **simple-data-analysis@1.8.1** (both NodeJS and Bun), **Pandas (Python)**, and the **tidyverse (R)**.
+We ran the same calculations with **simple-data-analysis@1.8.1** (both NodeJS and Bun), **Pandas** (Python), and the **tidyverse** (R).
 
 In each script, we:
 

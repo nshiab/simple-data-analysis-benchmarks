@@ -2,6 +2,7 @@ import benchmark from "./functions/sdaLegacy.js";
 
 console.log("benchmark-node-sda-legacy");
 
+console.log("ahccd-sample.csv");
 await benchmark(
   "ahccd-sample.csv",
   10,
