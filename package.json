@@ -11,7 +11,7 @@
     "all": "npm run bun-sda-legacy && npm run node-sda-legacy && npm run bun-sda-next && npm run node-sda-next && npm run python-pandas && npm run r-tidyverse && npm run aggregate"
   },
   "dependencies": {
-    "simple-data-analysis": "^2.0.1-rc.16",
+    "simple-data-analysis": "^2.0.1",
     "simple-data-analysis-legacy": "npm:simple-data-analysis@^1.8.2"
   }
 }
