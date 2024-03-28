@@ -20,9 +20,10 @@ await sdb.longer(
 await sdb.summarize("results", {
   values: "duration",
   categories: ["version", "runtime", "file", "steps"],
-  summaries: "mean",
+  summaries: ["mean", "stdDev"],
+  decimals: 3,
 });
-await sdb.replaceStrings("results", "steps", {
+await sdb.replace("results", "steps", {
   importing: "1. Importing",
   cleaning: "2. Cleaning",
   modifying: "3. Modifying",
