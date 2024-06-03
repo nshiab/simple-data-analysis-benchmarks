@@ -6,7 +6,7 @@
     "python-pandas": "python3 benchmark-python-pandas.py",
     "r-tidyverse": "Rscript benchmark-r-tidyverse.R",
     "aggregate": "node aggregatingResults.js",
-    "all": "npm run bun-sda-legacy && npm run node-sda-legacy && npm run bun-sda-next && npm run node-sda-next-2.0.1 && npm run node-sda-next && npm run python-pandas && npm run r-tidyverse && npm run aggregate"
+    "all": "npm run node-sda && npm run bun-sda && npm run python-pandas && npm run r-tidyverse && npm run aggregate"
   },
   "dependencies": {
     "simple-data-analysis": "^3.0.0"

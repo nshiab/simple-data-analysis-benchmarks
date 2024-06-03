@@ -1,11 +1,11 @@
-import { SimpleNodeDB } from "simple-data-analysis";
+import { SimpleDB } from "simple-data-analysis";
 
-const sdb = new SimpleNodeDB();
-await sdb.loadDataFromDirectory("results", "./results/", {
+const sdb = new SimpleDB();
+const table = sdb.newTable();
+await table.loadDataFromDirectory("./results/", {
   unifyColumns: true,
 });
-await sdb.longer(
-  "results",
+await table.longer(
   [
     "importing",
     "cleaning",
@@ -17,13 +17,13 @@ await sdb.longer(
   "steps",
   "duration"
 );
-await sdb.summarize("results", {
+await table.summarize({
   values: "duration",
   categories: ["version", "runtime", "file", "steps"],
   summaries: ["mean", "stdDev"],
   decimals: 3,
 });
-await sdb.replace("results", "steps", {
+await table.replace("steps", {
   importing: "1. Importing",
   cleaning: "2. Cleaning",
   modifying: "3. Modifying",
@@ -32,6 +32,6 @@ await sdb.replace("results", "steps", {
   totalDuration: "Total duration",
 });
 
-await sdb.writeData("results", "aggregatedResults.csv");
+await table.writeData("aggregatedResults.csv");
 
-await sdb.logTable("results", { nbRowsToLog: 60 });
+await table.logTable({ nbRowsToLog: 60 });
