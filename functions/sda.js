@@ -1,4 +1,4 @@
-import { SimpleDataNode } from "simple-data-analysis-legacy";
+import { SimpleDB } from "simple-data-analysis";
 
 export default async function benchmark(file, iterations, runtime, version) {
   const results = [];
@@ -12,55 +12,42 @@ export default async function benchmark(file, iterations, runtime, version) {
       iteration: i,
     };
     const startTotal = Date.now();
-    const sda = new SimpleDataNode();
-
+    const sdb = new SimpleDB();
+    const table = sdb.newTable();
     // Loading
     const startImporting = Date.now();
-    if (file.includes("sample")) {
-      sda.loadDataFromLocalFile({ path: `./data/${file}` });
-    } else {
-      await sda.loadDataWithStream({
-        path: `./data/${file}`,
-        showItemIndexEveryX: 100000,
-      });
-    }
-
+    await table.loadData(`./data/${file}`, { allText: true });
     const endImporting = Date.now();
     times.importing = (endImporting - startImporting) / 1000;
 
     // Cleaning
     const startCleaning = Date.now();
-    sda.selectKeys({ keys: ["time", "station", "station_name", "tas"] });
-    sda.excludeMissingValues({ key: "tas" });
-    sda.valuesToFloat({ key: "tas" });
-    sda.valuesToDate({ key: "time", format: "%Y-%m-%d" });
+    await table.selectColumns(["time", "station", "station_name", "tas"]);
+    await table.removeMissing({ columns: "tas" });
+    await table.convert({ tas: "double", time: "date" });
     const endCleaning = Date.now();
     times.cleaning = (endCleaning - startCleaning) / 1000;
 
     // Modifying
     const startModifying = Date.now();
-    sda.addKey({
-      key: "decade",
-      valueGenerator: (item) =>
-        Math.floor(item.time.getUTCFullYear() / 10) * 10,
-    });
+    await table.addColumn("decade", "integer", `FLOOR(YEAR(time) / 10)*10`);
     const endModifying = Date.now();
     times.modifying = (endModifying - startModifying) / 1000;
 
     // Writing clean data
     const startWriting = Date.now();
-    sda.saveData({
-      path: `./output/${runtime}-${version}-${file.split(".")[0]}.csv`,
-    });
+    await table.writeData(
+      `./output/${runtime}-${version}-${file.split(".")[0]}.csv`
+    );
     const endWriting = Date.now();
     times.writing = (endWriting - startWriting) / 1000;
 
     // Summarizing
     const startSummarizing = Date.now();
-    sda.summarize({
-      keyValue: "tas",
-      keyCategory: ["station", "station_name", "decade"],
-      summary: "mean",
+    await table.summarize({
+      values: "tas",
+      categories: ["station", "station_name", "decade"],
+      summaries: "mean",
     });
     const endSummarizing = Date.now();
     times.summarizing = (endSummarizing - startSummarizing) / 1000;
@@ -69,17 +56,21 @@ export default async function benchmark(file, iterations, runtime, version) {
     times.totalDuration = (endTotal - startTotal) / 1000;
 
     console.log("Total duration", times.totalDuration, "sec");
+
     results.push(times);
 
     // Writing the final data to ensure it works as expected
-    sda.saveData({
-      path: `./output/${runtime}-${version}-${
-        file.split(".")[0]
-      }-summarized.csv`,
-    });
+    await table.writeData(
+      `./output/${runtime}-${version}-${file.split(".")[0]}-summarized.csv`
+    );
+
+    await sdb.done();
   }
 
-  new SimpleDataNode({ data: results }).saveData({
-    path: `./results/${runtime}-${version}-${file.split(".")[0]}.csv`,
-  });
+  const sdb = new SimpleDB();
+  const table = sdb.newTable();
+  await table.loadArray(results);
+  await table.writeData(
+    `./results/${runtime}-${version}-${file.split(".")[0]}.csv`
+  );
 }
