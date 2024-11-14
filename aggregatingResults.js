@@ -15,7 +15,7 @@ await table.longer(
     "totalDuration",
   ],
   "steps",
-  "duration"
+  "duration",
 );
 await table.summarize({
   values: "duration",
@@ -34,4 +34,4 @@ await table.replace("steps", {
 
 await table.writeData("aggregatedResults.csv");
 
-await table.logTable({ nbRowsToLog: 60 });
+await table.logTable(150);

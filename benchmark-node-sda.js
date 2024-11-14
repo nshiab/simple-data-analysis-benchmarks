@@ -11,4 +11,4 @@ await benchmark(
 );
 
 console.log("\nahccd.csv");
-await benchmark("ahccd.csv", 10, "node@22.2.0", "simple-data-analysis@3.17.0");
+await benchmark("ahccd.csv", 10, "node@23.3.0", "simple-data-analysis@3.17.0");
