@@ -2,13 +2,14 @@
   "type": "module",
   "scripts": {
     "node-sda": "node benchmark-node-sda.js",
-    "bun-sda": "node benchmark-bun-sda.js",
+    "bun-sda": "bun benchmark-bun-sda.js",
+    "deno-sda": "deno -A benchmark-deno-sda.js",
     "python-pandas": "python3 benchmark-python-pandas.py",
     "r-tidyverse": "Rscript benchmark-r-tidyverse.R",
     "aggregate": "node aggregatingResults.js",
-    "all": "npm run node-sda && npm run bun-sda && npm run python-pandas && npm run r-tidyverse && npm run aggregate"
+    "all": "npm run node-sda && bun run bun-sda && deno task deno-sda && npm run python-pandas && npm run r-tidyverse && npm run aggregate"
   },
   "dependencies": {
-    "simple-data-analysis": "^3.0.0"
+    "@nshiab/simple-data-analysis": "npm:@jsr/nshiab__simple-data-analysis@^3.17.0"
   }
 }

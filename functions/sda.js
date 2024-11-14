@@ -1,4 +1,4 @@
-import { SimpleDB } from "simple-data-analysis";
+import { SimpleDB } from "@nshiab/simple-data-analysis";
 
 export default async function benchmark(file, iterations, runtime, version) {
   const results = [];
@@ -37,7 +37,7 @@ export default async function benchmark(file, iterations, runtime, version) {
     // Writing clean data
     const startWriting = Date.now();
     await table.writeData(
-      `./output/${runtime}-${version}-${file.split(".")[0]}.csv`
+      `./output/${runtime}-${version}-${file.split(".")[0]}.csv`,
     );
     const endWriting = Date.now();
     times.writing = (endWriting - startWriting) / 1000;
@@ -61,7 +61,7 @@ export default async function benchmark(file, iterations, runtime, version) {
 
     // Writing the final data to ensure it works as expected
     await table.writeData(
-      `./output/${runtime}-${version}-${file.split(".")[0]}-summarized.csv`
+      `./output/${runtime}-${version}-${file.split(".")[0]}-summarized.csv`,
     );
 
     await sdb.done();
@@ -71,6 +71,6 @@ export default async function benchmark(file, iterations, runtime, version) {
   const table = sdb.newTable();
   await table.loadArray(results);
   await table.writeData(
-    `./results/${runtime}-${version}-${file.split(".")[0]}.csv`
+    `./results/${runtime}-${version}-${file.split(".")[0]}.csv`,
   );
 }
