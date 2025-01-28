@@ -5,9 +5,9 @@ console.log("benchmark-bun-sda");
 await benchmark(
   "ahccd-sample.csv",
   10,
-  "bun@1.1.34",
-  "simple-data-analysis@3.17.0",
+  "bun@1.2.1",
+  "simple-data-analysis@4.0.1",
 );
 
 console.log("\nahccd.csv");
-await benchmark("ahccd.csv", 10, "bun@1.1.34", "simple-data-analysis@3.17.0");
+await benchmark("ahccd.csv", 10, "bun@1.2.1", "simple-data-analysis@4.0.1");
