@@ -1,4 +1,4 @@
-import { SimpleDB } from "simple-data-analysis";
+import { SimpleDB } from "@nshiab/simple-data-analysis";
 
 const sdb = new SimpleDB();
 const table = sdb.newTable();
