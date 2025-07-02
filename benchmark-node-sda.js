@@ -6,9 +6,9 @@ console.log("ahccd-sample.csv");
 await benchmark(
   "ahccd-sample.csv",
   10,
-  "node@23.13.1",
-  "simple-data-analysis@4.0.1",
+  "node@22.17.0",
+  "simple-data-analysis@5.6.13",
 );
 
 console.log("\nahccd.csv");
-await benchmark("ahccd.csv", 10, "node@23.13.1", "simple-data-analysis@4.0.1");
+await benchmark("ahccd.csv", 10, "node@22.17.0", "simple-data-analysis@5.6.13");

@@ -3,7 +3,7 @@ source("./functions/r_tidyverse.R")
 print("banchmark-r-tidyverse")
 
 print("ahccd-sample.csv")
-benchmark("ahccd-sample.csv", 10, "tidyverse (2025-01-28)", "R@4.4.2")
+benchmark("ahccd-sample.csv", 10, "tidyverse (2025-07-02)", "R@4.5.1")
 
 print("ahccd.csv")
-benchmark("ahccd.csv", 10, "tidyverse (2025-01-28)",  "R@4.4.2")
+benchmark("ahccd.csv", 10, "tidyverse (2025-07-02)",  "R@4.5.1")
