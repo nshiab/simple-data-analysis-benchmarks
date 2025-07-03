@@ -10,6 +10,6 @@
     "all": "npm run node-sda && bun run bun-sda && deno task deno-sda && npm run python-pandas && npm run r-tidyverse && npm run aggregate"
   },
   "dependencies": {
-    "@nshiab/simple-data-analysis": "npm:@jsr/nshiab__simple-data-analysis@^5.6.13"
+    "@nshiab/simple-data-analysis": "npm:@jsr/nshiab__simple-data-analysis@^5.6.14"
   }
 }
