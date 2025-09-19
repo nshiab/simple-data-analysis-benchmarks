@@ -5,9 +5,9 @@ console.log("benchmark-deno-sda");
 await benchmark(
   "ahccd-sample.csv",
   10,
-  "deno@2.4.0",
-  "simple-data-analysis@5.6.15",
+  "deno@2.5.1",
+  "simple-data-analysis@5.6.33",
 );
 
 console.log("\nahccd.csv");
-await benchmark("ahccd.csv", 10, "deno@2.4.0", "simple-data-analysis@5.6.15");
+await benchmark("ahccd.csv", 10, "deno@2.5.1", "simple-data-analysis@5.6.33");
