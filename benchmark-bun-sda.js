@@ -6,8 +6,8 @@ await benchmark(
   "ahccd-sample.csv",
   10,
   "bun@1.2.22",
-  "simple-data-analysis@5.6.33",
+  "simple-data-analysis@5.6.36",
 );
 
 console.log("\nahccd.csv");
-await benchmark("ahccd.csv", 10, "bun@1.2.22", "simple-data-analysis@5.6.33");
+await benchmark("ahccd.csv", 10, "bun@1.2.22", "simple-data-analysis@5.6.36");

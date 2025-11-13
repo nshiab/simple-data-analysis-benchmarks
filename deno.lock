@@ -3,7 +3,7 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
-        "npm:@jsr/nshiab__simple-data-analysis@^5.6.33"
+        "npm:@jsr/nshiab__simple-data-analysis@^5.6.36"
       ]
     }
   }
