@@ -6,10 +6,8 @@ we calculated the average temperature per decade and city with the daily
 temperatures from the
 [Adjusted and Homogenized Canadian Climate Data](https://api.weather.gc.ca/collections/ahccd-annual).
 
-We ran the same calculations with **simple-data-analysis@1.8.1** (both NodeJS
-and Bun), **simple-data-analysis@2.0.1** (NodeJS),
-**simple-data-analysis@2.7.3** (NodeJS), **Pandas (Python)**, and the
-**tidyverse (R)**.
+We ran the same calculations with **simple-data-analysis** (Deno, NodeJS and
+Bun), **Pandas (Python)**, and the **tidyverse (R)**.
 
 In each script, we:
 
@@ -21,7 +19,7 @@ In each script, we:
 5. Write the cleaned-up data that we computed the averages from in a new CSV
    file (_Writing_)
 
-Each script has been run ten times on a MacBook Pro (Apple M1 Pro / 16 GB). The
+Each script has been run ten times on a MacBook Pro (Apple M4 Max / 64 GB). The
 durations have been averaged and we calculated the standard deviation.
 
 The charts displayed below come from this
@@ -37,8 +35,8 @@ With _ahccd-samples.csv_:
 - 971,804 rows
 - 19,436,080 data points
 
-**simple-data-analysis@1.8.1** was the slowest, but
-**simple-data-analysis@2.x.x** versions are now the fastest.
+**simple-data-analysis** is the fastest, but if we skip writing the CSV file,
+the **tidyverse** shows impressive speed with small files.
 
 ![A chart showing the processing duration of multiple scripts in various languages](./assets/small-file.png)
 
@@ -52,10 +50,7 @@ With _ahccd.csv_:
 - 22,051,025 rows
 - 441,020,500 data points
 
-The file was too big for **simple-data-analysis@1.8.1**, so it's not included
-here.
-
-While **simple-data-analysis@2.0.1** was already fast,
-**simple-data-analysis@2.7.3** shines even more with big files.
+Thanks to DuckDB, **simple-data-analysis** really shines with big files. It's
+the fastest option.
 
 ![A chart showing the processing duration of multiple scripts in various languages](./assets/big-file.png)
